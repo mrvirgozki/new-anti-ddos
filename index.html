@@ -638,25 +638,31 @@
             case 'trojan': 
                 return `trojan://${SS_PASSWORD}@${addr}:443?${transportParam}&security=tls&fp=chrome&sni=${sni}&alpn=${encodeURIComponent(alpnVal)}#TROJAN-${selectedTransport.toUpperCase()}-VIRGOZKI`;
             case 'vmess': 
-                return `vmess://${btoa(JSON.stringify({
-                    v:'2',
-                    ps:`VMESS-${selectedTransport.toUpperCase()}-VIRGOZKI`,
-                    add:addr,
-                    port:'443',
-                    id:UUID,
-                    aid:'0',
-                    scy:'auto',
-                    net:selectedTransport,
-                    host:host,
-                    ...(selectedTransport === 'grpc' ? {serviceName:path} : {path:path}),
-                    tls:'tls',
-                    sni:sni,
-                    fp:'chrome',
-                    alpn:alpnVal
-                })).replace(/=+$/,'')}`;
+                const vmessObj = {
+                    v: '2',
+                    ps: `VMESS-${selectedTransport.toUpperCase()}-VIRGOZKI`,
+                    add: addr,
+                    port: '443',
+                    id: UUID,
+                    aid: '0',
+                    scy: 'auto',
+                    net: selectedTransport,
+                    host: host,
+                    tls: 'tls',
+                    sni: sni,
+                    fp: 'chrome',
+                    alpn: alpnVal
+                };
+                if(selectedTransport === 'grpc') {
+                    vmessObj.path = path;
+                    vmessObj.serviceName = path;
+                } else {
+                    vmessObj.path = path;
+                }
+                return `vmess://${btoa(JSON.stringify(vmessObj)).replace(/=+$/,'')}`;
             case 'shadowsocks': 
                 const ssCred = btoa(`${SS_METHOD}:${SS_PASSWORD}`).replace(/=+$/,'');
-                return `ss://${ssCred}@${addr}:443?${transportParam}&security=tls&sni=${sni}#SS-${selectedTransport.toUpperCase()}-VIRGOZKI`;
+                return `ss://${ssCred}@${addr}:443?${transportParam}&security=tls&sni=${sni}&alpn=${encodeURIComponent(alpnVal)}#SS-${selectedTransport.toUpperCase()}-VIRGOZKI`;
         }
     }
 
@@ -871,7 +877,6 @@
                 });
             });
 
-            // 🆕 TNT ONLY COPY EVENT LISTENER
             tntCopyBtn.addEventListener('click', () => {
                 navigator.clipboard.writeText(tntConfigDisplay.value).then(() => {
                     tntCopyBtn.textContent = '✓ COPIED!';
