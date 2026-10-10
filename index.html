@@ -28,19 +28,19 @@
             padding: 16px 12px;
             position: relative;
             overflow-x: hidden;
-            background: transparent;
+            background: #0a0a0c; /* ✅ IWAS WHITE SCREEN SA BODY */
         }
 
         #bg-video {
             position: fixed;
             top: 0; left: 0; width: 100vw; height: 100vh;
             object-fit: cover; z-index: -2; display: block;
-            filter: brightness(0.9) contrast(1.1); /* ✅ MAS PINALIWANAG PARA LUMITAW ANG VIDEO */
+            filter: brightness(0.9) contrast(1.1);
         }
         .bg-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: transparent; /* ✅ TANGGAL LAHAT NG DILIM SA OVERLAY */
+            background: transparent;
             z-index: -1;
         }
 
@@ -250,14 +250,14 @@
         }
         .modal-close:hover {background: var(--accent); color: #000;}
 
-        /* LOADING SCREEN */
+        /* LOADING SCREEN - FIXED WHITE SCREEN */
         #loading-screen {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-direction: column; align-items: center; justify-content: center;
-            background: #000; z-index: 999999; overflow: hidden; transition: opacity 0.5s ease;
+            background: #0a0a0c; z-index: 999999; overflow: hidden; transition: opacity 0.5s ease;
         }
         #loading-screen.hidden {opacity: 0; pointer-events: none;}
         .loading-bg-video {position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; display: block; filter: brightness(0.8);}
-        .loading-overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: transparent; z-index: -1;}
+        .loading-overlay {position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(10, 10, 12, 0.4); z-index: -1;}
         .load-text {font-family: 'Orbitron', sans-serif; font-size: 20px; font-weight: 900; color: var(--accent); margin-bottom: 8px; position: relative; z-index: 1; text-shadow: 0 0 15px var(--accent-glow); letter-spacing: 2px;}
         .load-sub {font-size: 12px; color: var(--text-secondary); position: relative; z-index: 1; letter-spacing: 1px; text-shadow: 0 0 8px rgba(0,0,0,0.9);}
         .loader-spinner {width: 45px; height: 45px; border: 3px solid rgba(255,255,255,0.2); border-top-color: var(--accent); border-radius: 50%; animation: spin 1s linear infinite; margin: 15px 0; box-shadow: 0 0 15px var(--accent-glow);}
@@ -267,13 +267,13 @@
 <body>
 
 <video id="bg-video" autoplay muted loop playsinline preload="auto">
-    <source src="https://dl.dropboxusercontent.com/scl/fi/4ow0wjnznaf03cv12qkfb/ssstik.io_-ikoppie_1785393023125.mp4?rlkey=o9je28ockyfobm4243vu0un5s&dl=1" type="video/mp4">
+    <source src="https://www.dropbox.com/scl/fi/a5njruk2hje2hdwixd6mo/ssstik.io_-aniversez.ai_1791625667328.mp4?rlkey=chhp1874rnoncmr7z4ha3s9lj&st=j37i3z6d&dl=1" type="video/mp4">
 </video>
 <div class="bg-overlay"></div>
 
 <div id="loading-screen">
     <video class="loading-bg-video" autoplay muted loop playsinline preload="auto">
-        <source src="https://dl.dropboxusercontent.com/scl/fi/4ow0wjnznaf03cv12qkfb/ssstik.io_-ikoppie_1785393023125.mp4?rlkey=o9je28ockyfobm4243vu0un5s&dl=1" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/a5njruk2hje2hdwixd6mo/ssstik.io_-aniversez.ai_1791625667328.mp4?rlkey=chhp1874rnoncmr7z4ha3s9lj&st=j37i3z6d&dl=1" type="video/mp4">
     </video>
     <div class="loading-overlay"></div>
     <div class="load-text">VIRGOZKI PANEL</div>
@@ -413,7 +413,7 @@
 
 <div class="modal" id="address-modal">
     <video class="modal-bg-video" autoplay muted loop playsinline preload="auto">
-        <source src="https://dl.dropboxusercontent.com/scl/fi/4ow0wjnznaf03cv12qkfb/ssstik.io_-ikoppie_1785393023125.mp4?rlkey=o9je28ockyfobm4243vu0un5s&dl=1" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/a5njruk2hje2hdwixd6mo/ssstik.io_-aniversez.ai_1791625667328.mp4?rlkey=chhp1874rnoncmr7z4ha3s9lj&st=j37i3z6d&dl=1" type="video/mp4">
     </video>
     <div class="section-title">🔌 SELECT ADDRESS</div>
     <div class="modal-list" id="address-list"></div>
@@ -422,7 +422,7 @@
 
 <div class="modal" id="sni-modal">
     <video class="modal-bg-video" autoplay muted loop playsinline preload="auto">
-        <source src="https://dl.dropboxusercontent.com/scl/fi/4ow0wjnznaf03cv12qkfb/ssstik.io_-ikoppie_1785393023125.mp4?rlkey=o9je28ockyfobm4243vu0un5s&dl=1" type="video/mp4">
+        <source src="https://www.dropbox.com/scl/fi/a5njruk2hje2hdwixd6mo/ssstik.io_-aniversez.ai_1791625667328.mp4?rlkey=chhp1874rnoncmr7z4ha3s9lj&st=j37i3z6d&dl=1" type="video/mp4">
     </video>
     <div class="section-title">🛡️ SELECT SNI</div>
     <div class="modal-list" id="sni-list"></div>
