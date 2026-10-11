@@ -21,16 +21,13 @@ COPY config.json /etc/xray.json
 COPY nginx.conf /usr/local/openresty/nginx/conf/nginx.conf
 COPY index.html /usr/local/openresty/nginx/html/index.html
 
-# ✅ I-fix ang Nginx port bago simula — GAGANA KAHIT ANONG IBIGAY NG CLOUD RUN
-RUN sed -i 's/listen\s*[0-9]*;/listen ${PORT:-8080};/g' /usr/local/openresty/nginx/conf/nginx.conf || true
-
 # ✅ Startup script
 COPY entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 ENV XRAY_LOCATION_ASSET=/usr/local/share/xray/
 ENV PORT=8080
-EXPOSE ${PORT:-8080}
+EXPOSE 8080
 
 ENTRYPOINT ["/sbin/tini", "--"]
 CMD ["/entrypoint.sh"]
